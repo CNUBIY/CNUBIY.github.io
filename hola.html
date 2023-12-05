@@ -8,7 +8,7 @@
 <body>
 <h1>FORMULARIO DE REGISTROS </h1>
     
-<form action="#" method="post" id="miFormulario">
+<form id="miFormulario">
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required>
 
@@ -27,9 +27,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
     import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
-  
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyCKopn-m4oW6hOFCDVIR3m_TByOL4NT9Ok",
@@ -51,8 +48,13 @@
 
     window.crearRegistro = function() {
         try {
-            // Agregar la lógica específica de crear un registro con Java
-            console.log('Se está creando un registro...');
+            // Obtener los valores del formulario
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+
+            // Imprimir en la consola
+            console.log('Nombre:', nombre);
+            console.log('Apellido:', apellido);
         } catch (error) {
             console.error("Error al crear el registro:", error);
         }
