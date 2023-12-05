@@ -33,6 +33,14 @@
             var edad= parseInt(document.getElementById('age').value);
 
             console.log(nombre,edad);
+
+            push(
+                ref(database, 'septimo'),
+                {
+                    name: nombre,
+                    age: age
+                }
+            );
         }
       </script>
     <h1>Hola Mundo</h1>
