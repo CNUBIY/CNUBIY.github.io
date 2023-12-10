@@ -116,52 +116,36 @@
         }
 
 
-        function editarRegistro(key, name, lastname, age, CI) {
-            const nombreInput = document.getElementById('nombre');
-            const apellidoInput = document.getElementById('apellido');
-            const edadInput = document.getElementById('edad');
-            const cedulaInput = document.getElementById('cedula');
-            const botonCrear = document.querySelector('button[type="button"]');
+        document.querySelector('tbody').addEventListener('click', (event) => {
+            const target = event.target;
 
-            nombreInput.value = name;
-            apellidoInput.value = lastname;
-            edadInput.value = age;
-            cedulaInput.value = CI;
+            if (target.tagName.toLowerCase() === 'button') {
+                const tr = target.closest('tr');
+                const [key, name, lastname, age, CI] = Array.from(tr.children).slice(0, -1).map(td => td.textContent);
 
-    // Cambiar el botón "Crear" por "Actualizar" durante la edición
-            botonCrear.innerText = 'Actualizar';
-            botonCrear.onclick = function () {
-            actualizarRegistro(key);
-             };
+                if (target.classList.contains('btn-outline-info')) {
+                    // Acción para editar
+                    const nombreInput = document.getElementById('nombre');
+                    const apellidoInput = document.getElementById('apellido');
+                    const edadInput = document.getElementById('edad');
+                    const cedulaInput = document.getElementById('cedula');
+
+                    nombreInput.value = name;
+                    apellidoInput.value = lastname;
+                    edadInput.value = age;
+                    cedulaInput.value = CI;
+
+                    const botonCrear = document.querySelector('button[type="button"]');
+                    botonCrear.innerText = 'Actualizar';
+                    botonCrear.onclick = function () {
+                        actualizarRegistro(key);
+                    };
+                } else if (target.classList.contains('btn-outline-danger')) {
+                    // Acción para eliminar (puedes implementar esta lógica si es necesario)
+                }
             }
+        });
 
-        function actualizarRegistro(key) {
-            const nombre = document.getElementById('nombre').value;
-            const apellido = document.getElementById('apellido').value;
-            const edad = document.getElementById('edad').value;
-            const CI = document.getElementById('cedula').value;
-
-        update(ref(database, `carlosColcha/${key}`), {
-         name: nombre,
-         lastname: apellido,
-         age: edad,
-         CI: CI,
-         });
-
-    // Restaurar el botón "Crear" después de la actualización
-        const botonCrear = document.querySelector('button[type="button"]');
-        botonCrear.innerText = 'Crear';
-         botonCrear.onclick = function () {
-        crearRegistro();
-        };
-
-    // Limpiar los campos del formulario después de la actualización
-        document.getElementById('nombre').value = '';
-        document.getElementById('apellido').value = '';
-        document.getElementById('edad').value = '';
-        document.getElementById('cedula').value = '';
-        }
-        
         document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
       </script>
         <div class="contenedor">
