@@ -101,7 +101,7 @@
         </nav>
         <br>
     </header>
-    <center><h1>MIS DEPORTEsS</h1></center>
+    <center><h1>MIS DEPORTES</h1></center>
 
     <div class="contenedor">
         <form id="crud-form">
@@ -240,13 +240,12 @@
                     const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
                     const equipoFavorito = document.getElementById('equipoFavorito').value;
 
-                    const deportistaKeyRef = ref(deportistaRef);
                     set(deportistaKeyRef, {
-                        name: nombre,
-                        age: edad,
-                        deporteFavorito: deporteFavorito,
-                        segundoDeporteFavorito: segundoDeporteFavorito,
-                        equipoFavorito: equipoFavorito,
+                         name: nombre,
+                         age: edad,
+                         deporteFavorito: deporteFavorito,
+                         segundoDeporteFavorito: segundoDeporteFavorito,
+                         equipoFavorito: equipoFavorito,
                     });
 
                     // Limpiar los campos después de crear o editar el registro
