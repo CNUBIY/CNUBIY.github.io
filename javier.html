@@ -105,49 +105,52 @@ input{
           </div>
         </div>
         </form>
-        <script type="module" >
-        // Importar funciones específicas de Firebase
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
-
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-          apiKey: "AIzaSyCKopn-m4oW6hOFCDVIR3m_TByOL4NT9Ok",
-          authDomain: "prueba-90db3.firebaseapp.com",
-          databaseURL: "https://prueba-90db3-default-rtdb.firebaseio.com",
-          projectId: "prueba-90db3",
-          storageBucket: "prueba-90db3.appspot.com",
-          messagingSenderId: "120213660091",
-          appId: "1:120213660091:web:8877743400094d78fe249e"
-        };
-       // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
-        //Imprimir por consola
-        window.crearRegistro = function() {
-        const nombre = document.getElementById("nombre").value;
-        const precio = document.getElementById("precio").value;
-        const cantidad = document.getElementById("cantidad").value;
-        const total = document.getElementById("total").value;
-
-        // Obtener una referencia a la ubicación en la base de datos donde deseas almacenar el nuevo registro
-        const newRecordRef = push(ref(database, 'Javier Tuso'));
-
-        // Setear los datos del nuevo registro
-        set(newRecordRef, {
-          name: nombre,
-          precio: precio,
-          cantidad: cantidad,
-          total: total
-        });
-
-        // Limpiar los campos del formulario después de crear el registro
-        document.getElementById("nombre").value = "";
-        document.getElementById("precio").value = "";
-        document.getElementById("cantidad").value = "";
-        document.getElementById("total").value = "";
-      };
-    </script>
+        <script type="module">
+          // Importar funciones específicas de Firebase
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+          import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+    
+          // Tu configuración de Firebase
+          const firebaseConfig = {
+            apiKey: "AIzaSyCKopn-m4oW6hOFCDVIR3m_TByOL4NT9Ok",
+            authDomain: "prueba-90db3.firebaseapp.com",
+            databaseURL: "https://prueba-90db3-default-rtdb.firebaseio.com",
+            projectId: "prueba-90db3",
+            storageBucket: "prueba-90db3.appspot.com",
+            messagingSenderId: "120213660091",
+            appId: "1:120213660091:web:8877743400094d78fe249e"
+          };
+    
+          // Inicializar Firebase
+          const app = initializeApp(firebaseConfig);
+          const database = getDatabase(app);
+    
+          // Función para crear un nuevo registro
+          window.crearRegistro = function() {
+            const nombre = document.getElementById("nombre").value;
+            const precio = document.getElementById("precio").value;
+            const cantidad = document.getElementById("cantidad").value;
+            const total = document.getElementById("total").value;
+    
+            // Obtener una referencia a la ubicación en la base de datos donde deseas almacenar el nuevo registro
+            const newRecordRef = push(ref(database, 'Javier Tuso'));
+    
+            // Setear los datos del nuevo registro
+            set(newRecordRef, {
+              name: nombre,
+              precio: precio,
+              cantidad: cantidad,
+              total: total
+            });
+    
+            // Limpiar los campos del formulario después de crear el registro
+            document.getElementById("nombre").value = "";
+            document.getElementById("precio").value = "";
+            document.getElementById("cantidad").value = "";
+            document.getElementById("total").value = "";
+          };
+        </script>
+    
           <hr>
           <h1>LISTA DE PRODUCTOS </h1>
           <div style="justify-content: center; ">
