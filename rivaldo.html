@@ -101,7 +101,7 @@
         </nav>
         <br>
     </header>
-    <center><h1>MIS DEPORTEjS</h1></center>
+    <center><h1>MIS DEPORTEjhhS</h1></center>
 
     <div class="contenedor">
         <form id="crud-form">
@@ -175,6 +175,7 @@
     const equipoFavorito = document.getElementById('equipoFavorito').value;
 
     const deportistaRef = ref(database, 'rivaldo');
+    let deportistaKeyRef;  // Declarar la variable fuera del bloque condicional
 
     if (document.getElementById('crearButton').innerHTML === 'Crear') {
         // Crear nuevo registro
@@ -188,7 +189,7 @@
     } else {
         // Editar registro existente
         const key = document.getElementById('crearButton').getAttribute('data-key');
-        const deportistaKeyRef = ref(deportistaRef, key);
+        deportistaKeyRef = ref(deportistaRef, key);
         
         set(deportistaKeyRef, {
             name: nombre,
