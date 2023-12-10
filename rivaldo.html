@@ -125,7 +125,7 @@
                 <label for="equipoFavorito">Ingresa tu equipo favorito:</label>
                 <input type="text" class="form-control" id="equipoFavorito" placeholder="Equipo Favorito" title="Escribe tu equipo favorito">
             </div>
-            <button type="button" class="btn btn-primary" id="crearButton" onclick="crearEditarRegistro();">Crear</button>
+            <button type="button" class="btn btn-primary" id="crearButton" onclick="crearRegistro();">Crear</button>
         </form>
     </div>
 
@@ -166,8 +166,8 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Función para crear o editar un registro
-        window.crearEditarRegistro = function () {
+        // Función para crear un nuevo registro
+        window.crearRegistro = function () {
             const nombre = document.getElementById('nombre').value;
             const edad = document.getElementById('edad').value;
             const deporteFavorito = document.getElementById('deporteFavorito').value;
@@ -227,15 +227,16 @@
                 document.getElementById('deporteFavorito').value = deportista.deporteFavorito;
                 document.getElementById('segundoDeporteFavorito').value = deportista.segundoDeporteFavorito;
                 document.getElementById('equipoFavorito').value = deportista.equipoFavorito;
+
+                // Cambiar el botón de "Crear" a "Guardar" y actualizar la función
+                const crearButton = document.getElementById('crearButton');
+                crearButton.innerHTML = 'Guardar';
+                crearButton.setAttribute('data-key', key);
+                crearButton.onclick = function () {
+                    // Guardar los datos editados
+                    crearRegistro();
+                };
             });
-            // Cambiar el botón de "Crear" a "Guardar" y actualizar la función
-            const crearButton = document.getElementById('crearButton');
-            crearButton.innerHTML = 'Guardar';
-            crearButton.setAttribute('data-key', key);
-            crearButton.onclick = function () {
-                // Guardar los datos editados
-                crearEditarRegistro();
-            };
         }
 
         // Función para mostrar la lista de deportistas
