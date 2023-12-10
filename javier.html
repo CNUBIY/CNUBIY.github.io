@@ -151,32 +151,6 @@ input{
             document.getElementById("total").value = "";
           };
 
-          function actualizarTabla() {
-            const tablaBody = document.getElementById('tabla-productos-body');
-            tablaBody.innerHTML = ''; // Limpiar contenido actual
-            // Obtener datos de la base de datos y llenar la tabla
-            const productosRef = ref(database, 'Javier Tuso');
-            onValue(productosRef, (snapshot) => {
-              const productos = snapshot.val();
-              for (const key in productos) {
-                if (Object.hasOwnProperty.call(productos, key)) {
-                  const producto = productos[key];
-                  const fila = document.createElement('tr');
-                  fila.innerHTML = `
-                    <td>${producto.name}</td>
-                    <td>${producto.precio}</td>
-                    <td>${producto.cantidad}</td>
-                    <td>${producto.total}</td>
-                    <td>
-                      <button type="button" class="btn btn-warning" onclick="editarRegistro()">EDITAR</button>
-                      <button type="button" class="btn btn-danger" onclick="eliminarRegistro()">ELIMINAR</button>
-                    </td>
-                  `;
-                  tablaBody.appendChild(fila);
-                }
-              }
-            });
-          }
         </script>
     
           <hr>
@@ -198,6 +172,38 @@ input{
                       </table>
                   </ul>
               </div>
+
+                <script>
+
+function actualizarTabla() {
+    const tablaBody = document.getElementById('tabla-productos-body');
+    tablaBody.innerHTML = ''; // Limpiar contenido actual
+
+    // Obtener datos de la base de datos y llenar la tabla
+    const productosRef = ref(database, 'Javier Tuso');
+    onValue(productosRef, (snapshot) => {
+      const productos = snapshot.val();
+      for (const key in productos) {
+        if (Object.hasOwnProperty.call(productos, key)) {
+          const producto = productos[key];
+          const fila = document.createElement('tr');
+          fila.innerHTML = `
+            <td>${producto.name}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <td>${producto.total}</td>
+            <td>
+              <button type="button" class="btn btn-warning" onclick="editarRegistro()">EDITAR</button>
+              <button type="button" class="btn btn-danger" onclick="eliminarRegistro()">ELIMINAR</button>
+            </td>
+          `;
+          tablaBody.appendChild(fila);
+        }
+      }
+    });
+  }
+
+                </script>
 
 </body>
 
