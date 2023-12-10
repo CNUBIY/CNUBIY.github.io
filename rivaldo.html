@@ -101,7 +101,7 @@
         </nav>
         <br>
     </header>
-    <center><h1>"holaaaaaaaaa"</h1></center>
+    <center><h1>"holaa"</h1></center>
 
     <div class="contenedor">
         <form id="crud-form">
@@ -219,7 +219,7 @@
         window.editarDeportista = function (key) {
             const deportistaRef = ref(database, `rivaldo/${key}`);
             // Obtener los datos del deportista actual
-            const currentDeportista = onValue(deportistaRef, (snapshot) => {
+            onValue(deportistaRef, (snapshot) => {
                 const deportista = snapshot.val();
                 // Llenar el formulario con los datos actuales
                 document.getElementById('nombre').value = deportista.name;
