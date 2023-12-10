@@ -4,116 +4,159 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Servicios en la Nube</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Mis Deportes Favoritos CRUD</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            margin: 20px;
+            background: #B6FFFA;
         }
 
         header {
-            background-color: #3498db;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-
-        section {
             margin-bottom: 20px;
         }
 
-        h2 {
-            color: #3498db;
+        .navbar {
+            background-color: #17a2b8;
+        }
+
+        .navbar-brand img {
+            width: 50px;
+            height: auto;
+        }
+
+        .contenedor {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .contenedor2 {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h3 {
+            text-align: center;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
-        th, td {
-            border: 1px solid #3498db;
+        table,
+        th,
+        td {
+            border: 1px solid #17a2b8;
+        }
+
+        th,
+        td {
             padding: 10px;
             text-align: left;
         }
 
         th {
-            background-color: #3498db;
+            background-color: #17a2b8;
             color: #fff;
         }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-       
-
     </style>
 </head>
 
 <body>
 
     <header>
-        <nav>
-            <li>
-                <a href="index.html">INICIO</a>
-                <a href="hola.html">HOLA MUNDO</a>
-            </li>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="index.html"><img class="icono-red-social" src="img/UTC.png" alt="Logo sitio"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="extra.html">CRUD COLCHA<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="receta.html">Receta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javier.html">CRUD JAVIER</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="rivaldo.html"> CRUD RIVALDO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="hola.html">FORMULARIO</a>
+                    </li>
+                </ul>
+            </div>
         </nav>
-
-
-
-
-        <h1>Importancia de Servicios en la Nube</h1>
+        <br>
     </header>
 
-    <section>
-        <h2>Estilos en la Nube</h2>
-        <p>Los servicios en la nube proporcionan flexibilidad y escalabilidad para aplicaciones y datos, permitiendo un desarrollo ágil y eficiente.</p>
-    </section>
+    <div class="contenedor">
+        <form id="crud-form">
+            <div class="form-group">
+                <label for="nombre">Ingresa tus nombres:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Nombres" title="Escribe tu nombre">
+            </div>
+            <div class="form-group">
+                <label for="edad">Ingresa tu edad:</label>
+                <input type="number" class="form-control" id="edad" placeholder="Edad" title="¿Cuántos años tienes?">
+            </div>
+            <div class="form-group">
+                <label for="deporteFavorito">Ingresa tu deporte favorito:</label>
+                <input type="text" class="form-control" id="deporteFavorito" placeholder="Deporte Favorito" title="Escribe tu deporte favorito">
+            </div>
+            <div class="form-group">
+                <label for="segundoDeporteFavorito">Ingresa tu segundo deporte favorito:</label>
+                <input type="text" class="form-control" id="segundoDeporteFavorito" placeholder="Segundo Deporte Favorito" title="Escribe tu segundo deporte favorito">
+            </div>
+            <div class="form-group">
+                <label for="equipoFavorito">Ingresa tu equipo favorito:</label>
+                <input type="text" class="form-control" id="equipoFavorito" placeholder="Equipo Favorito" title="Escribe tu equipo favorito">
+            </div>
+            <button type="button" class="btn btn-primary" onclick="crearRegistro();">Crear</button>
+        </form>
+    </div>
 
-    <section>
-        <h2>Misión y Visión</h2>
-        <p>Nuestra misión es brindar soluciones en la nube que impulsen la innovación y la eficiencia en los negocios. Nos visualizamos como líderes en la entrega de servicios tecnológicos confiables y seguros.</p>
-    </section>
-
-    <section>
-        <h2>Tablas</h2>
-        <p>Utilizamos tablas para organizar y visualizar datos de manera clara. A continuación, se muestra un ejemplo de cómo presentamos información:</p>
+    <div class="contenedor2">
+        <h3>Lista de Deportistas</h3>
         <table>
             <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Servicio</th>
-                    <th>Costo</th>
+                    <th>Edad</th>
+                    <th>Deporte Favorito</th>
+                    <th>Segundo Deporte Favorito</th>
+                    <th>Equipo Favorito</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Cliente 1</td>
-                    <td>Almacenamiento en la Nube</td>
-                    <td>$50/mes</td>
-                </tr>
-                <tr>
-                    <td>Cliente 2</td>
-                    <td>Plataforma como Servicio (PaaS)</td>
-                    <td>$100/mes</td>
-                </tr>
-            </tbody>
+            <tbody id="listaDeportistas"></tbody>
         </table>
-    </section>
+    </div>
 
-    <footer>
-        &copy; 2023 Servicios en la Nube - Todos los derechos reservados
-    </footer>
+    <script type="module">
+        onValue(ref(database, 'deportistas'), (snapshot) => {
+            const listaDeportistas = document.getElementById('listaDeportistas');
+            listaDeportistas.innerHTML = '';
+
+            snapshot.forEach((childSnapshot) => {
+                const deportista = childSnapshot.val();
+
+                const row = listaDeportistas.insertRow();
+                row.innerHTML = `<td>${deportista.name}</td><td>${deportista.age}</td><td>${deportista.deporteFavorito}</td><td>${deportista.segundoDeporteFavorito}</td><td>${deportista.equipoFavorito}</td>`;
+            });
+        });
+    </script>
 
 </body>
 
