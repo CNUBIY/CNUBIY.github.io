@@ -133,11 +133,9 @@ input{
             const total = document.getElementById("total").value;
             //imprimir por consola
             console.log (nombre,precio,cantidad,total);
-            
-            push(ref(database, 'Javier Tuso'));
-    
-            // Setear los datos del nuevo registro
-            set(newRecordRef, {
+            const newRecordRef = push(ref(database, 'Javier Tuso')).key;
+
+            set(ref(database, 'Javier Tuso/' + newRecordRef), {
               name: nombre,
               precio: precio,
               cantidad: cantidad,
@@ -151,7 +149,7 @@ input{
             document.getElementById("total").value = "";
           };
         </script>
-    
+
           <hr>
           <h1>LISTA DE PRODUCTOS </h1>
           <div style="justify-content: center; ">
