@@ -101,7 +101,7 @@
         </nav>
         <br>
     </header>
-    <center><h1>MIS DEPORTES</h1></center>
+    <center><h1>MIS DEPORTEjhhS</h1></center>
 
     <div class="contenedor">
         <form id="crud-form">
@@ -175,36 +175,17 @@
             const equipoFavorito = document.getElementById('equipoFavorito').value;
 
             const deportistaRef = ref(database, 'rivaldo');
-            let deportistaKeyRef;  // Declarar la variable fuera del bloque condicional
 
-            if (document.getElementById('crearButton').innerHTML === 'Crear') {
-                // Crear nuevo registro
-                push(deportistaRef, {
-                    name: nombre,
-                    age: edad,
-                    deporteFavorito: deporteFavorito,
-                    segundoDeporteFavorito: segundoDeporteFavorito,
-                    equipoFavorito: equipoFavorito,
-                });
-            } else {
-                // Editar registro existente
-                const key = document.getElementById('crearButton').getAttribute('data-key');
-                deportistaKeyRef = ref(deportistaRef, key);
+            // Crear nuevo registro
+            push(deportistaRef, {
+                name: nombre,
+                age: edad,
+                deporteFavorito: deporteFavorito,
+                segundoDeporteFavorito: segundoDeporteFavorito,
+                equipoFavorito: equipoFavorito,
+            });
 
-                set(deportistaKeyRef, {
-                    name: nombre,
-                    age: edad,
-                    deporteFavorito: deporteFavorito,
-                    segundoDeporteFavorito: segundoDeporteFavorito,
-                    equipoFavorito: equipoFavorito,
-                });
-
-                // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
-                document.getElementById('crearButton').innerHTML = 'Crear';
-                document.getElementById('crearButton').removeAttribute('data-key');
-            }
-
-            // Limpiar los campos después de crear o editar el registro
+            // Limpiar los campos después de crear el registro
             document.getElementById('nombre').value = '';
             document.getElementById('edad').value = '';
             document.getElementById('deporteFavorito').value = '';
@@ -221,8 +202,6 @@
         // Función para editar un deportista
         window.editarDeportista = function (key) {
             const deportistaRef = ref(database, `rivaldo/${key}`);
-            let deportistaKeyRef;  // Declarar la variable fuera del bloque condicional
-
             // Obtener los datos del deportista actual
             onValue(deportistaRef, (snapshot) => {
                 const deportista = snapshot.val();
@@ -235,41 +214,10 @@
 
                 // Cambiar el botón de "Crear" a "Guardar" y actualizar la función
                 const crearButton = document.getElementById('crearButton');
-                crearButton.innerHTML = 'Guardar';
-                crearButton.setAttribute('data-key', key);
-
-                // Guardar la referencia al deportista en la variable
-                deportistaKeyRef = ref(deportistaRef);
-
+                crearButton.innerHTML = 'Crear';
+                crearButton.removeAttribute('data-key');
                 crearButton.onclick = function () {
-                    // Guardar los datos editados
-                    const nombre = document.getElementById('nombre').value;
-                    const edad = document.getElementById('edad').value;
-                    const deporteFavorito = document.getElementById('deporteFavorito').value;
-                    const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
-                    const equipoFavorito = document.getElementById('equipoFavorito').value;
-
-                    set(deportistaKeyRef, {
-                        name: nombre,
-                        age: edad,
-                        deporteFavorito: deporteFavorito,
-                        segundoDeporteFavorito: segundoDeporteFavorito,
-                        equipoFavorito: equipoFavorito,
-                    });
-
-                    // Limpiar los campos después de crear o editar el registro
-                    document.getElementById('nombre').value = '';
-                    document.getElementById('edad').value = '';
-                    document.getElementById('deporteFavorito').value = '';
-                    document.getElementById('segundoDeporteFavorito').value = '';
-                    document.getElementById('equipoFavorito').value = '';
-
-                    // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
-                    crearButton.innerHTML = 'Crear';
-                    crearButton.removeAttribute('data-key');
-                    crearButton.onclick = function () {
-                        crearRegistro();
-                    };
+                    crearRegistro();
                 };
             });
         }
