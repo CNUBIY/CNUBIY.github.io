@@ -150,39 +150,6 @@ input{
             document.getElementById("cantidad").value = "";
             document.getElementById("total").value = "";
           };
-
-          function actualizarTabla() {
-  const tableBody = document.querySelector(".table tbody");
-  tableBody.innerHTML = ""; // Limpiamos la tabla antes de actualizars
-
-  // Obtener datos de la base de datos y actualizar la tabla
-  const productosRef = ref(database, 'Javier Tuso');
-  get(child(productosRef), (snapshot) => {
-    if (snapshot.exists()) {
-      const productos = snapshot.val();
-
-      // Iterar sobre los productos y agregar filas a la tabla
-      Object.keys(productos).forEach((key) => {
-        const producto = productos[key];
-        const newRow = tableBody.insertRow();
-
-        const cellNombre = newRow.insertCell(0);
-        cellNombre.textContent = producto.name;
-
-        const cellPrecio = newRow.insertCell(1);
-        cellPrecio.textContent = producto.precio;
-
-        const cellCantidad = newRow.insertCell(2);
-        cellCantidad.textContent = producto.cantidad;
-
-        const cellTotal = newRow.insertCell(3);
-        cellTotal.textContent = producto.total;
-
-        // Puedes agregar más celdas según tus necesidades
-      });
-    }
-  });
-}
   
         </script>
     
