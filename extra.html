@@ -86,8 +86,33 @@
                     CI: CI,
 
                 }
-            );
+            );   
         }
+
+        function mostrarDatosEnTabla() {
+            const tablaBody = document.querySelector("tbody");
+
+            onValue(ref(database, 'carlosColcha'), (snapshot) => {
+                tablaBody.innerHTML = ''; 
+
+                snapshot.forEach((childSnapshot) => {
+                    const { name, lastname, age, CI } = childSnapshot.val();
+
+                    const fila = document.createElement('tr');
+                    fila.innerHTML = `
+                        <td>${name}</td>
+                        <td>${lastname}</td>
+                        <td>${age}</td>
+                        <td>${CI}</td>
+                    `;
+
+                    tablaBody.appendChild(fila);
+                });
+            });
+        }
+
+  
+        document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
       </script>
         <div class="contenedor">
             
