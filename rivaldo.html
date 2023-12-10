@@ -101,7 +101,7 @@
         </nav>
         <br>
     </header>
-    <center><h1>"holaa"</h1></center>
+    <center><h1>MIS DEPORTES</h1></center>
 
     <div class="contenedor">
         <form id="crud-form">
@@ -233,8 +233,32 @@
                 crearButton.innerHTML = 'Guardar';
                 crearButton.setAttribute('data-key', key);
                 crearButton.onclick = function () {
+                    // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
+                    crearButton.innerHTML = 'Crear';
+                    crearButton.removeAttribute('data-key');
+                    
                     // Guardar los datos editados
-                    crearRegistro();
+                    const nombre = document.getElementById('nombre').value;
+                    const edad = document.getElementById('edad').value;
+                    const deporteFavorito = document.getElementById('deporteFavorito').value;
+                    const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
+                    const equipoFavorito = document.getElementById('equipoFavorito').value;
+
+                    const deportistaKeyRef = ref(deportistaRef);
+                    set(deportistaKeyRef, {
+                        name: nombre,
+                        age: edad,
+                        deporteFavorito: deporteFavorito,
+                        segundoDeporteFavorito: segundoDeporteFavorito,
+                        equipoFavorito: equipoFavorito,
+                    });
+
+                    // Limpiar los campos después de crear o editar el registro
+                    document.getElementById('nombre').value = '';
+                    document.getElementById('edad').value = '';
+                    document.getElementById('deporteFavorito').value = '';
+                    document.getElementById('segundoDeporteFavorito').value = '';
+                    document.getElementById('equipoFavorito').value = '';
                 };
             });
         }
