@@ -149,29 +149,63 @@ input{
             document.getElementById("precio").value = "";
             document.getElementById("cantidad").value = "";
             document.getElementById("total").value = "";
+
           };
-  
-        </script>
-    
-          <hr>
-          <h1>LISTA DE PRODUCTOS </h1>
-          <div style="justify-content: center; ">
-                  <ul>
-                      <table class="table table-striped table-bordered">
-                          <thead class="thead-dark">
-                                  <th>NOMBRE</th>
-                                  <th>PRECIO</th>
-                                  <th>CANTIDAD</th>
-                                  <th>TOTAL</th>
-                                  <th>ACCIONES </th>
-                          </thead>
-                          <tbody>
+
+          
+            //Mostrar los datos creados 
+            function mostrarDatosEnTabla() {
+    const tablaProductos = document.getElementById('tablaProductos').querySelector('tbody');
+
+    onValue(ref(database, 'Javier Tuso'), (snapshot) => {
+      tablaProductos.innerHTML = '';
+
+      snapshot.forEach((childSnapshot) => {
+        const producto = childSnapshot.val();
+        const newRow = tablaProductos.insertRow();
+
+        const cellNombre = newRow.insertCell(0);
+        cellNombre.textContent = producto.name;
+
+        const cellPrecio = newRow.insertCell(1);
+        cellPrecio.textContent = producto.precio;
+
+        const cellCantidad = newRow.insertCell(2);
+        cellCantidad.textContent = producto.cantidad;
+
+        const cellTotal = newRow.insertCell(3);
+        cellTotal.textContent = producto.total;
+
+        const cellAcciones = newRow.insertCell(4);
+        cellAcciones.innerHTML = `<button type="button" class="btn btn-outline-info" onclick="editarRegistro('${childSnapshot.key}', '${producto.name}', '${producto.precio}', '${producto.cantidad}', '${producto.total}')">Editar</button>
+                                  <button type="button" class="btn btn-outline-danger" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>`;
+      });
+    });
+  }
+
+  // Llama a la función para mostrar datos al cargar la página
+  mostrarDatosEnTabla();
+</script>
+      <h1>LISTA DE PRODUCTOS </h1>
+      <div style="justify-content: center; ">
+        <ul>
+          <table class="table table-striped table-bordered" id="tablaProductos">
+            <thead class="thead-dark">
+              <th>NOMBRE</th>
+              <th>PRECIO</th>
+              <th>CANTIDAD</th>
+              <th>TOTAL</th>
+              <th>ACCIONES </th>
+            </thead>
+            <tbody>
+              <!-- Aquí se insertarán las filas de la tabla -->
+            </tbody>
+          </table>
+        </ul>
+      </div>
 
 
-                          </tbody>
-                      </table>
-                  </ul>
-              </div>
+          
 
 </body>
 
