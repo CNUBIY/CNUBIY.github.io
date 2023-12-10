@@ -153,7 +153,7 @@ input{
             document.getElementById("total").value = "";
 
           };
-            // Función para editar un registro
+          // Función para editar un registro
 window.editarRegistro = function (key, nombre, precio, cantidad, total) {
     const productoRef = ref(database, `Javier Tuso/${key}`);
     
@@ -210,9 +210,8 @@ window.editarRegistro = function (key, nombre, precio, cantidad, total) {
     botonContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar el nuevo botón
     botonContainer.appendChild(guardarButton);
 };
-
             //Mostrar los datos creados 
-            function mostrarDatosEnTabla(){
+            function mostrarDatosEnTabla() {
         const tablaProductos = document.getElementById('tablaProductos').querySelector('tbody');
 
         onValue(ref(database, 'Javier Tuso'), (snapshot) => {
@@ -237,7 +236,6 @@ window.editarRegistro = function (key, nombre, precio, cantidad, total) {
         const cellAcciones = newRow.insertCell(4);
         cellAcciones.innerHTML = `<button type="button" class="btn btn-info" onclick="editarRegistro('${childSnapshot.key}', '${producto.name}', '${producto.precio}', '${producto.cantidad}', '${producto.total}')">Editar</button>
                                   <button type="button" class="btn btn-danger" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>`;
-                                  <button type="button" class="btn btn-success" id="guardarButton" onclick="guardarCambios()">Guardar</button>;
       });
     });
   }
