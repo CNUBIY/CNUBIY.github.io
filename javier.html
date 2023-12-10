@@ -153,66 +153,62 @@ input{
             document.getElementById("total").value = "";
 
           };
-              // Función para guardar cambios o crear un nuevo registro
-window.guardarCambios = function() {
-    const nombre = document.getElementById("nombre").value;
-    const precio = document.getElementById("precio").value;
-    const cantidad = document.getElementById("cantidad").value;
-    const total = document.getElementById("total").value;
-
-    // Verificar si hay una clave guardada (es decir, si se está editando)
-    const key = document.getElementById("guardarButton").getAttribute("data-key");
-
-    if (key) {
-        // Si hay una clave, actualizar el registro existente
-        update(ref(database, `Javier Tuso/${key}`), {
-            name: nombre,
-            precio: precio,
-            cantidad: cantidad,
-            total: total
-        });
-
-        // Limpiar los campos después de guardar los cambios
-        document.getElementById("nombre").value = "";
-        document.getElementById("precio").value = "";
-        document.getElementById("cantidad").value = "";
-        document.getElementById("total").value = "";
-
-        // Quitar la clave guardada
-        document.getElementById("guardarButton").removeAttribute("data-key");
-    } else {
-        // Si no hay una clave, crear un nuevo registro
-        const newRecordRef = push(ref(database, 'Javier Tuso'));
-
-        // Establecer los datos del nuevo registro
-        set(newRecordRef, {
-            name: nombre,
-            precio: precio,
-            cantidad: cantidad,
-            total: total
-        });
-
-        // Limpiar los campos después de crear el registro
-        document.getElementById("nombre").value = "";
-        document.getElementById("precio").value = "";
-        document.getElementById("cantidad").value = "";
-        document.getElementById("total").value = "";
-    }
-
-    // Actualizar la tabla con los datos
-    mostrarDatosEnTabla();
-};
-
-// Función para editar un registro
+            // Función para editar un registro
 window.editarRegistro = function (key, nombre, precio, cantidad, total) {
+    const productoRef = ref(database, `Javier Tuso/${key}`);
+    
     // Llenar el formulario con los datos actuales
     document.getElementById('nombre').value = nombre;
     document.getElementById('precio').value = precio;
     document.getElementById('cantidad').value = cantidad;
     document.getElementById('total').value = total;
 
-    // Establecer la clave como un atributo del botón "Guardar"
-    document.getElementById('guardarButton').setAttribute('data-key', key);
+    // Crear un nuevo botón "Guardar"
+    const guardarButton = document.createElement('button');
+    guardarButton.type = 'button';
+    guardarButton.className = 'btn btn-success';
+    guardarButton.textContent = 'Guardar';
+    guardarButton.onclick = function () {
+        // Lógica para guardar los cambios
+        const nuevoNombre = document.getElementById('nombre').value;
+        const nuevoPrecio = document.getElementById('precio').value;
+        const nuevaCantidad = document.getElementById('cantidad').value;
+        const nuevoTotal = document.getElementById('total').value;
+
+        // Actualizar los datos en la base de datos
+        update(ref(database, `Javier Tuso/${key}`), {
+            name: nuevoNombre,
+            precio: nuevoPrecio,
+            cantidad: nuevaCantidad,
+            total: nuevoTotal
+        });
+
+        // Limpiar el formulario después de guardar
+        document.getElementById('nombre').value = '';
+        document.getElementById('precio').value = '';
+        document.getElementById('cantidad').value = '';
+        document.getElementById('total').value = '';
+
+        // Volver a agregar el botón "Crear" después de guardar los cambios
+        const botonContainer = document.getElementById('botonContainer');
+        botonContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar el nuevo botón
+        const crearButton = document.createElement('button');
+        crearButton.type = 'button';
+        crearButton.className = 'btn btn-primary';
+        crearButton.textContent = 'Crear';
+        crearButton.onclick = function () {
+            crearRegistro();
+        };
+        botonContainer.appendChild(crearButton);
+
+        // Volver a mostrar los datos en la tabla después de guardar los cambios
+        mostrarDatosEnTabla();
+    };
+
+    // Reemplazar el botón existente con el nuevo botón "Guardar"
+    const botonContainer = document.getElementById('botonContainer');
+    botonContainer.innerHTML = '';  // Limpiar el contenedor antes de agregar el nuevo botón
+    botonContainer.appendChild(guardarButton);
 };
 
             //Mostrar los datos creados 
