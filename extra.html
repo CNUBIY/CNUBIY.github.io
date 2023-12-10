@@ -115,8 +115,6 @@
             });
         }
 
-  
-        document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
 
         function editarRegistro(key, name, lastname, age, CI) {
             const nombreInput = document.getElementById('nombre');
@@ -143,12 +141,12 @@
             const edad = document.getElementById('edad').value;
             const CI = document.getElementById('cedula').value;
 
-    update(ref(database, `carlosColcha/${key}`), {
-        name: nombre,
-        lastname: apellido,
-        age: edad,
-        CI: CI,
-    });
+        update(ref(database, `carlosColcha/${key}`), {
+         name: nombre,
+         lastname: apellido,
+         age: edad,
+         CI: CI,
+         });
 
     // Restaurar el botón "Crear" después de la actualización
         const botonCrear = document.querySelector('button[type="button"]');
@@ -163,6 +161,8 @@
         document.getElementById('edad').value = '';
         document.getElementById('cedula').value = '';
         }
+        
+        document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
       </script>
         <div class="contenedor">
             
