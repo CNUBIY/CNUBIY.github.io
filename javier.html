@@ -153,25 +153,27 @@ input{
             document.getElementById("total").value = "";
 
           };
-          // Función para editar un registro
-            window.editarRegistro = function(key, nombre, precio, cantidad, total) {
-              const nuevoNombre = prompt("Ingrese el nuevo nombre", nombre);
-              const nuevoPrecio = prompt("Ingrese el nuevo precio", precio);
-              const nuevaCantidad = prompt("Ingrese la nueva cantidad", cantidad);
-              const nuevoTotal = prompt("Ingrese el nuevo total", total);
+          window.editarRegistro = function(key, nombre, precio, cantidad, total) {
+            const nuevoNombre = prompt("Ingrese el nuevo nombre", nombre);
+            const nuevoPrecio = prompt("Ingrese el nuevo precio", precio);
+            const nuevaCantidad = prompt("Ingrese la nueva cantidad", cantidad);
+            const nuevoTotal = prompt("Ingrese el nuevo total", total);
 
-              if (nuevoNombre !== null && nuevoPrecio !== null && nuevaCantidad !== null && nuevoTotal !== null) {
-                const productoRef = ref(database, `Javier Tuso/${key}`);
-                set(productoRef, {
-                  name: nuevoNombre,
-                  precio: nuevoPrecio,
-                  cantidad: nuevaCantidad,
-                  total: nuevoTotal
-                });
-              }
-            };
+            if (nuevoNombre !== null && nuevoPrecio !== null && nuevaCantidad !== null && nuevoTotal !== null) {
+              const productoRef = ref(database, `Javier Tuso/${key}`);
+              set(productoRef, {
+                name: nuevoNombre,
+                precio: nuevoPrecio,
+                cantidad: nuevaCantidad,
+                total: nuevoTotal
+              });
+            }
+
+            // Luego de editar, actualizamos la tabla
+            mostrarDatosEnTabla();
+      };
             //Mostrar los datos creados 
-            function mostrarDatosEnTabla() {
+            function mostrarDatosEnTabla(){
         const tablaProductos = document.getElementById('tablaProductos').querySelector('tbody');
 
         onValue(ref(database, 'Javier Tuso'), (snapshot) => {
