@@ -75,8 +75,10 @@
 
             console.log(nombre,edad);
 
+
+
             push(
-                ref(database, 'carlosColcha'),
+                ref(database, 'prueba'),
                 {
                     name: nombre,
                     lastname: apellido,
@@ -103,9 +105,19 @@
         </div>
     <div class="contenedor2">
         <ul>
-            <li> Carlos Colcha</li>
-            <li>Rivaldo Gutierrez</li>
-            <li>Alex Tuso</li>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>EDAD</th>
+                        <th>CEDULA</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </ul>
     </div>
     
