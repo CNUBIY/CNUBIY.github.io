@@ -179,8 +179,20 @@ input{
         cellTotal.textContent = producto.total;
 
         const cellAcciones = newRow.insertCell(4);
-        cellAcciones.innerHTML = `<button type="button" class="btn btn-primary" onclick="editarRegistro('${childSnapshot.key}', '${producto.name}', '${producto.precio}', '${producto.cantidad}', '${producto.total}')">Editar</button>
-                                  <button type="button" class="btn btn-danger" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>`;
+        cellAcciones.innerHTML = `<button type="button" class="btn btn-primary" onclick="editarRegistro('${childSnapshot.key}', '${name}', '${lastname}', '${age}', '${CI}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                            <path d="M0 12.5l1.762-1.762L12.075 0l-1.762 1.762L0 12.5zM14.879 0l1.122 1.122a1.5 1.5 0 0 1 0 2.122l-1.414 1.414a1.5 1.5 0 0 1-2.122 0L10 3.414l-9.464 9.464a1.5 1.5 0 0 1-2.122 0L0 12.536l1.414-1.414L12.879 0h2.122z"/>
+                        </svg>
+                        Editar
+                    </button>   
+                    <button type="button" class="btn btn-danger" onclick="eliminarRegistro('${childSnapshot.key}')">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M1.5 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2V3h2a1 1 0 0 1 0 2h-1v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5H1V3.5a1 1 0 0 1 0-2zm1 1a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1V3H2v-.5a.5.5 0 0 0-1 0V5zm12 1V5H1v.5a.5.5 0 0 0 1 0V5h12v2h-1a1 1 0 0 1 0-2h1zM2.5 6a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zM13 9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1z"/>
+                        </svg>
+                        Eliminar
+                    </button>  
+
+                                  
       });
     });
   }
