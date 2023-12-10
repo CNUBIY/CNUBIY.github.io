@@ -184,9 +184,9 @@ input{
       });
     });
   }
-  window.eliminarRegistro = function (key) {
+  function eliminarRegistro(key) {
         remove(ref(database, `Javier Tuso/${key}`));
-      };
+      }
   // Llama a la función para mostrar datos al cargar la página
   mostrarDatosEnTabla();
 </script>
