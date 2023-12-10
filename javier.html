@@ -12,7 +12,6 @@ body{
   height: 100vh; /* Ajusta la altura al 100% de la ventana visible */
   margin: 0;
 
-
   h1{
       text-align: center;
       color: black;
@@ -45,7 +44,6 @@ body{
 
   </div>
 </nav>
-
 <body>
 
 <div class="container">
@@ -55,18 +53,40 @@ body{
         <br>
         <br>
         <br>
-         <table class="table table-striped" style="background-color: #f2f2f2;">
-          <thead>
-          <tr>
-            <th>NOMBRE</th>
-            <th>PRECIO</th>
-            <th>CANTIDAD</th>
-            <th>TOTAL</th>
-            <th>ACCIONES</th>
-          </tr>
-          </thead>
+        <form id="crud-form">
+          <label for="nombre">NOMBRE</label>
+          <br>
+          <input type="text" id="nombre" placeholder="Escribe el nombre del producto"  >
+          <br>
+          <br>
+          <label for="">PRECIO</label>
+          <br>
+          <input type="float" id="precio" placeholder="Escribe el precio" >
+          <br>
+          <br>
+          <label for="apellido">CANTIDAD</label>
+          <br>
+          <input type="integer" id="cantidad" placeholder="Escriba la cantidad del producto" >
+          <br>
+          <br>
+          <label for="float">TOTAL</label>
+          <br>
+          <input type="text" id="total" placeholder="Escribe el total ">
+          <hr>
+          <div class="row mb-4">
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-primary" onclick="crearRegistro()">CREAR</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-warning" onclick="editarRegistro()">EDITAR</button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="btn btn-danger" onclick="eliminarRegistro()">ELIMINAR</button>
+                </div>
+          </div>
+        </form>
 
-        </table>
+
         <div class="row mb-4">
               <div class="col-md-4">
                 <button type="button" class="btn btn-primary" onclick="crearRegistro()">CREAR</button>
@@ -78,11 +98,50 @@ body{
                 <button type="button" class="btn btn-danger" onclick="eliminarRegistro()">ELIMINAR</button>
               </div>
         </div>
-        
-
   </div>
 
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getDatabase,ref, push, onValue, remove} from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyCKopn-m4oW6hOFCDVIR3m_TByOL4NT9Ok",
+      authDomain: "prueba-90db3.firebaseapp.com",
+      databaseURL: "https://prueba-90db3-default-rtdb.firebaseio.com",
+      projectId: "prueba-90db3",
+      storageBucket: "prueba-90db3.appspot.com",
+      messagingSenderId: "120213660091",
+      appId: "1:120213660091:web:a236946f7555ab9afe249e"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database= getDatabase(app);
 
+    window.crearRegistro=function(){
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+        const edad= document.getElementById('edad').value;
+        const CI = document.getElementById('cedula').value;
+
+        console.log(nombre,edad);
+
+        push(
+            ref(database, 'septimo'),
+            {
+                name: nombre,
+                lastname: apellido,
+                age: edad,
+                CI: CI,
+
+            }
+        );
+    }
+  </script>
 </body>
 
 </html>
