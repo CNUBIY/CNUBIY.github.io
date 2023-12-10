@@ -142,7 +142,7 @@
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody id="listaDeportistas"></tbody>
+            <tbody id="listaDeportistajs"></tbody>
         </table>
     </div>
 
@@ -168,46 +168,48 @@
 
         // Función para crear un nuevo registro
         window.crearRegistro = function () {
-            const nombre = document.getElementById('nombre').value;
-            const edad = document.getElementById('edad').value;
-            const deporteFavorito = document.getElementById('deporteFavorito').value;
-            const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
-            const equipoFavorito = document.getElementById('equipoFavorito').value;
+    const nombre = document.getElementById('nombre').value;
+    const edad = document.getElementById('edad').value;
+    const deporteFavorito = document.getElementById('deporteFavorito').value;
+    const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
+    const equipoFavorito = document.getElementById('equipoFavorito').value;
 
-            const deportistaRef = ref(database, 'rivaldo');
+    const deportistaRef = ref(database, 'rivaldo');
 
-            if (document.getElementById('crearButton').innerHTML === 'Crear') {
-                // Crear nuevo registro
-                push(deportistaRef, {
-                    name: nombre,
-                    age: edad,
-                    deporteFavorito: deporteFavorito,
-                    segundoDeporteFavorito: segundoDeporteFavorito,
-                    equipoFavorito: equipoFavorito,
-                });
-            } else {
-                // Editar registro existente
-                const key = document.getElementById('crearButton').getAttribute('data-key');
-                const deportistaKeyRef = ref(deportistaRef, key);
-                set(deportistaKeyRef, {
-                    name: nombre,
-                    age: edad,
-                    deporteFavorito: deporteFavorito,
-                    segundoDeporteFavorito: segundoDeporteFavorito,
-                    equipoFavorito: equipoFavorito,
-                });
-                // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
-                document.getElementById('crearButton').innerHTML = 'Crear';
-                document.getElementById('crearButton').removeAttribute('data-key');
-            }
+    if (document.getElementById('crearButton').innerHTML === 'Crear') {
+        // Crear nuevo registro
+        push(deportistaRef, {
+            name: nombre,
+            age: edad,
+            deporteFavorito: deporteFavorito,
+            segundoDeporteFavorito: segundoDeporteFavorito,
+            equipoFavorito: equipoFavorito,
+        });
+    } else {
+        // Editar registro existente
+        const key = document.getElementById('crearButton').getAttribute('data-key');
+        const deportistaKeyRef = ref(deportistaRef, key);
+        
+        set(deportistaKeyRef, {
+            name: nombre,
+            age: edad,
+            deporteFavorito: deporteFavorito,
+            segundoDeporteFavorito: segundoDeporteFavorito,
+            equipoFavorito: equipoFavorito,
+        });
 
-            // Limpiar los campos después de crear o editar el registro
-            document.getElementById('nombre').value = '';
-            document.getElementById('edad').value = '';
-            document.getElementById('deporteFavorito').value = '';
-            document.getElementById('segundoDeporteFavorito').value = '';
-            document.getElementById('equipoFavorito').value = '';
-        }
+        // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
+        document.getElementById('crearButton').innerHTML = 'Crear';
+        document.getElementById('crearButton').removeAttribute('data-key');
+    }
+
+    // Limpiar los campos después de crear o editar el registro
+    document.getElementById('nombre').value = '';
+    document.getElementById('edad').value = '';
+    document.getElementById('deporteFavorito').value = '';
+    document.getElementById('segundoDeporteFavorito').value = '';
+    document.getElementById('equipoFavorito').value = '';
+}
 
         // Función para eliminar un deportista
         window.eliminarDeportista = function (key) {
