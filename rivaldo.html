@@ -233,10 +233,6 @@
                 crearButton.innerHTML = 'Guardar';
                 crearButton.setAttribute('data-key', key);
                 crearButton.onclick = function () {
-                    // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
-                    crearButton.innerHTML = 'Crear';
-                    crearButton.removeAttribute('data-key');
-                    
                     // Guardar los datos editados
                     const nombre = document.getElementById('nombre').value;
                     const edad = document.getElementById('edad').value;
@@ -259,6 +255,13 @@
                     document.getElementById('deporteFavorito').value = '';
                     document.getElementById('segundoDeporteFavorito').value = '';
                     document.getElementById('equipoFavorito').value = '';
+
+                    // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
+                    crearButton.innerHTML = 'Crear';
+                    crearButton.removeAttribute('data-key');
+                    crearButton.onclick = function () {
+                        crearRegistro();
+                    };
                 };
             });
         }
