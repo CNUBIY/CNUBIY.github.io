@@ -61,7 +61,7 @@
         th,
         td {
             padding: 10px;
-            text-align: left;
+            text-align: center;
         }
 
         th {
@@ -145,7 +145,52 @@
     </div>
 
     <script type="module">
-        onValue(ref(database, 'deportistas'), (snapshot) => {
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+        import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCKopn-m4oW6hOFCDVIR3m_TByOL4NT9Ok",
+            authDomain: "prueba-90db3.firebaseapp.com",
+            databaseURL: "https://prueba-90db3-default-rtdb.firebaseio.com",
+            projectId: "prueba-90db3",
+            storageBucket: "prueba-90db3.appspot.com",
+            messagingSenderId: "120213660091",
+            appId: "1:120213660091:web:a236946f7555ab9afe249e"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        window.crearRegistro = function () {
+            const nombre = document.getElementById('nombre').value;
+            const edad = document.getElementById('edad').value;
+            const deporteFavorito = document.getElementById('deporteFavorito').value;
+            const segundoDeporteFavorito = document.getElementById('segundoDeporteFavorito').value;
+            const equipoFavorito = document.getElementById('equipoFavorito').value;
+
+            push(
+                ref(database, 'rivaldo'), // Cambiado a 'rivaldo' en lugar de 'deportistas'
+                {
+                    name: nombre,
+                    age: edad,
+                    deporteFavorito: deporteFavorito,
+                    segundoDeporteFavorito: segundoDeporteFavorito,
+                    equipoFavorito: equipoFavorito,
+                }
+            );
+
+            // Limpiar los campos después de crear el registro
+            document.getElementById('nombre').value = '';
+            document.getElementById('edad').value = '';
+            document.getElementById('deporteFavorito').value = '';
+            document.getElementById('segundoDeporteFavorito').value = '';
+            document.getElementById('equipoFavorito').value = '';
+        }
+
+        onValue(ref(database, 'rivaldo'), (snapshot) => { // Cambiado a 'rivaldo' en lugar de 'deportistas'
             const listaDeportistas = document.getElementById('listaDeportistas');
             listaDeportistas.innerHTML = '';
 
