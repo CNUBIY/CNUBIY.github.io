@@ -201,13 +201,38 @@
         // Función para editar un deportista
         window.editarDeportista = function (key) {
             const deportistaRef = ref(database, `rivaldo/${key}`);
-            const deportista = prompt("Edita el deportista", ""); // Puedes implementar un formulario más elaborado aquí
-            if (deportista !== null) {
+            // Obtener los datos del deportista actual
+            const currentDeportista = onValue(deportistaRef, (snapshot) => {
+                const deportista = snapshot.val();
+                // Llenar el formulario con los datos actuales
+                document.getElementById('nombre').value = deportista.name;
+                document.getElementById('edad').value = deportista.age;
+                document.getElementById('deporteFavorito').value = deportista.deporteFavorito;
+                document.getElementById('segundoDeporteFavorito').value = deportista.segundoDeporteFavorito;
+                document.getElementById('equipoFavorito').value = deportista.equipoFavorito;
+            });
+            // Cambiar el botón de "Crear" a "Guardar" y actualizar la función
+            const crearButton = document.getElementById('crearButton');
+            crearButton.innerHTML = 'Guardar';
+            crearButton.onclick = function () {
+                // Guardar los datos editados
                 set(deportistaRef, {
-                    ...deportista,
-                    key: key, // Asegurarse de mantener la clave única
+                    name: document.getElementById('nombre').value,
+                    age: document.getElementById('edad').value,
+                    deporteFavorito: document.getElementById('deporteFavorito').value,
+                    segundoDeporteFavorito: document.getElementById('segundoDeporteFavorito').value,
+                    equipoFavorito: document.getElementById('equipoFavorito').value,
                 });
-            }
+                // Limpiar los campos después de guardar
+                document.getElementById('nombre').value = '';
+                document.getElementById('edad').value = '';
+                document.getElementById('deporteFavorito').value = '';
+                document.getElementById('segundoDeporteFavorito').value = '';
+                document.getElementById('equipoFavorito').value = '';
+                // Cambiar el botón de "Guardar" a "Crear" y actualizar la función
+                crearButton.innerHTML = 'Crear';
+                crearButton.onclick = crearRegistro;
+            };
         }
 
         // Función para mostrar la lista de deportistas
