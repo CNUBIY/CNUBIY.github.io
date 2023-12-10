@@ -131,11 +131,13 @@ input{
             const precio = document.getElementById("precio").value;
             const cantidad = document.getElementById("cantidad").value;
             const total = document.getElementById("total").value;
+            //imprimir por consola
             console.log (nombre,precio,cantidad,total);
-          
-
-
-            const newRecordRef = push(ref(database, 'Javier Tuso'));
+            console.log('nombre:', nombre);
+            console.log('precio:', precio);
+            console.log('cantidad:', cantidad);
+            console.log('total:', total);
+             push(ref(database, 'Javier Tuso'));
     
             // Setear los datos del nuevo registro
             set(newRecordRef, {
