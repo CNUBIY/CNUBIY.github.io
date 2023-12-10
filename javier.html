@@ -179,8 +179,8 @@ input{
         cellTotal.textContent = producto.total;
 
         const cellAcciones = newRow.insertCell(4);
-        cellAcciones.innerHTML = `<button type="button" class="btn btn-outline-info" onclick="editarRegistro('${childSnapshot.key}', '${producto.name}', '${producto.precio}', '${producto.cantidad}', '${producto.total}')">Editar</button>
-                                  <button type="button" class="btn btn-outline-danger" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>`;
+        cellAcciones.innerHTML = `<button type="button" class="btn btn-primary" onclick="editarRegistro('${childSnapshot.key}', '${producto.name}', '${producto.precio}', '${producto.cantidad}', '${producto.total}')">Editar</button>
+                                  <button type="button" class="btn btn-danger" onclick="eliminarRegistro('${childSnapshot.key}')">Eliminar</button>`;
       });
     });
   }
