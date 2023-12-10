@@ -124,24 +124,30 @@ input{
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         //Imprimir por consola
-        window.crearRegistro=function(){
-          const nombre=document.getElementById("nombre").value;
-          const precio=document.getElementById("precio").value;
-          const cantidad=document.getElementById("cantidad").value;
-          const total=document.getElementById("total").value;
-          Push(
-          ref(database, 'Javier Tuso'),
-          {
-            name: nombre,
-            precio:precio,
-            cantidad:cantidad,
-            total:total
-          }
+        window.crearRegistro = function() {
+        const nombre = document.getElementById("nombre").value;
+        const precio = document.getElementById("precio").value;
+        const cantidad = document.getElementById("cantidad").value;
+        const total = document.getElementById("total").value;
 
-          );
+        // Obtener una referencia a la ubicación en la base de datos donde deseas almacenar el nuevo registro
+        const newRecordRef = push(ref(database, 'Javier Tuso'));
 
-        }
-        </script>
+        // Setear los datos del nuevo registro
+        set(newRecordRef, {
+          name: nombre,
+          precio: precio,
+          cantidad: cantidad,
+          total: total
+        });
+
+        // Limpiar los campos del formulario después de crear el registro
+        document.getElementById("nombre").value = "";
+        document.getElementById("precio").value = "";
+        document.getElementById("cantidad").value = "";
+        document.getElementById("total").value = "";
+      };
+    </script>
           <hr>
           <h1>LISTA DE PRODUCTOS </h1>
           <div style="justify-content: center; ">
