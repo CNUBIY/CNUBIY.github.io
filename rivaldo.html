@@ -125,7 +125,7 @@
                 <label for="equipoFavorito">Ingresa tu equipo favorito:</label>
                 <input type="text" class="form-control" id="equipoFavorito" placeholder="Equipo Favorito" title="Escribe tu equipo favorito">
             </div>
-            <button type="button" class="btn btn-primary" id="crearButton" onclick="crearRegistro();">Crear</button>
+            <button type="button" class="btn btn-primary" id="crearButton" onclick="crearEditarRegistro();">Crear</button>
         </form>
     </div>
 
@@ -166,8 +166,8 @@
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
-        // Función para crear un nuevo registro
-        window.crearRegistro = function () {
+        // Función para crear o editar un registro
+        window.crearEditarRegistro = function () {
             const nombre = document.getElementById('nombre').value;
             const edad = document.getElementById('edad').value;
             const deporteFavorito = document.getElementById('deporteFavorito').value;
@@ -234,7 +234,7 @@
             crearButton.setAttribute('data-key', key);
             crearButton.onclick = function () {
                 // Guardar los datos editados
-                crearRegistro();
+                crearEditarRegistro();
             };
         }
 
