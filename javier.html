@@ -207,6 +207,56 @@ input{
         });
       };
 
+        // Función para guardar un registro
+      window.guardarRegistro = function() {
+        const nombre = document.getElementById("nombre").value;
+        const precio = document.getElementById("precio").value;
+        const cantidad = document.getElementById("cantidad").value;
+        const total = document.getElementById("total").value;
+
+        // Verificar si ya existe un registro para el producto
+        const productoRef = ref(database, 'Javier Tuso');
+        let productoExistenteKey = null;
+
+        onValue(productoRef, (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            const producto = childSnapshot.val();
+            if (producto.name === nombre) {
+              // Si encontramos un producto existente, almacenamos su clave
+              productoExistenteKey = childSnapshot.key;
+            }
+          });
+
+          // Si hay un producto existente, actualizamos sus datos; de lo contrario, creamos uno nuevo
+          if (productoExistenteKey !== null) {
+            // Actualizar el registro existente
+            update(ref(database, `Javier Tuso/${productoExistenteKey}`), {
+              name: nombre,
+              precio: precio,
+              cantidad: cantidad,
+              total: total
+            });
+          } else {
+            // Crear un nuevo registro
+            push(ref(database, 'Javier Tuso'), {
+              name: nombre,
+              precio: precio,
+              cantidad: cantidad,
+              total: total
+            });
+          }
+
+          // Limpiar los campos del formulario después de guardar
+          document.getElementById("nombre").value = "";
+          document.getElementById("precio").value = "";
+          document.getElementById("cantidad").value = "";
+          document.getElementById("total").value = "";
+
+          // Volver a mostrar los datos en la tabla después de guardar
+          mostrarDatosEnTabla();
+        });
+      };
+
       // Función para editar un registro
       window.editarRegistro = function(key, nombre, precio, cantidad, total) {
         const productoRef = ref(database, `Javier Tuso/${key}`);
@@ -243,6 +293,9 @@ input{
           document.getElementById('cantidad').value = '';
           document.getElementById('total').value = '';
 
+          // Volver a mostrar los datos en la tabla después de guardar los cambios
+          mostrarDatosEnTabla();
+
           // Volver a agregar el botón "Crear" después de guardar los cambios
           const botonContainer = document.getElementById('botonContainer');
           botonContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar el nuevo botón
@@ -254,9 +307,6 @@ input{
             guardarRegistro();
           };
           botonContainer.appendChild(crearButton);
-
-          // Volver a mostrar los datos en la tabla después de guardar los cambios
-          mostrarDatosEnTabla();
         };
 
         // Reemplazar el botón existente con el nuevo botón "Guardar"
@@ -264,7 +314,6 @@ input{
         botonContainer.innerHTML = ''; // Limpiar el contenedor antes de agregar el nuevo botón
         botonContainer.appendChild(guardarButton);
       };
-
          //Mostrar los datos creados 
         function mostrarDatosEnTabla() {
         const tablaProductos = document.getElementById('tablaProductos').querySelector('tbody');
