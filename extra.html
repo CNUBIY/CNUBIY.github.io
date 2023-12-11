@@ -67,6 +67,7 @@
         const app = initializeApp(firebaseConfig);
         const database= getDatabase(app);
 
+        //INGRESAR INFORMACIÓN A LA BASE DE DATOS
         window.crearRegistro=function(){
             const nombre = document.getElementById('nombre').value;
             const apellido = document.getElementById('apellido').value;
@@ -89,11 +90,13 @@
             );   
         }
 
+        //ELIMINAR DATOS DE LA TABLA
         window.borrarRegistro=function(key){
             const usuarioRef = ref(database, `carlosColcha/${key}`);
             remove(usuarioRef);
         }
 
+        //MOSTRAR DATOS EN LA TABLA
         window.mostrarDatosEnTabla=function() {
             const tablaBody = document.querySelector("tbody");
 
@@ -121,6 +124,51 @@
         }
 
 
+        //EDITAR LA INFORMACIÓN DE LA BASE DE DATOS
+        window.editarRegistro=function(key){
+            const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const edadInput = document.getElementById('edad');
+        const cedulaInput = document.getElementById('cedula');
+
+        const nuevoNombre = nombreInput.value;
+        const nuevoApellido = apellidoInput.value;
+        const nuevaEdad = edadInput.value;
+        const nuevaCedula = cedulaInput.value;
+            
+        const registroRef = ref(database, 'carlosColcha/' + key);
+
+            update(registroRef, {
+                name: nuevoNombre,
+                lastname: nuevoApellido,
+                age: nuevaEdad,
+                CI: nuevaCedula,
+            }).then(() => {
+                // Datos actualizados exitosamente
+                console.log('Registro actualizado correctamente');
+                // Limpiar el formulario después de la actualización
+                limpiarFormulario();
+            }).catch((error) => {
+                // Hubo un error al actualizar los datos
+                console.error('Error al actualizar el registro:', error);
+            });
+        } 
+
+
+        function limpiarFormulario() {
+        // Limpia los campos del formulario después de la actualización
+        document.getElementById('nombre').value = '';
+        document.getElementById('apellido').value = '';
+        document.getElementById('edad').value = '';
+        document.getElementById('cedula').value = '';
+
+        // Cambiar el botón de "Actualizar" a "Crear" después de la actualización
+        const botonCrear = document.querySelector('button[type="button"]');
+        botonCrear.innerText = 'Crear';
+        botonCrear.onclick = function () {
+            crearRegistro();
+        };
+        }
         
 
         document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
