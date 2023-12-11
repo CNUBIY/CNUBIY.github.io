@@ -312,7 +312,7 @@
         function mostrarDatosEnTabla() {
         const tablaProductos = document.getElementById('tablaProductos').querySelector('tbody');
 
-        onValue(ref(database, 'Javier Tuso'), (snapshot) => {
+        onValue(ref(database, 'Javier_Tuso'), (snapshot) => {
           tablaProductos.innerHTML = '';
 
        snapshot.forEach((childSnapshot) => {
