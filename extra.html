@@ -88,10 +88,7 @@
 
                 }
             ); 
-            document.getElementById('nombre').value = '';
-            document.getElementById('apellido').value = '';
-            document.getElementById('edad').value = '';
-            document.getElementById('cedula').value = '';
+            limpiarFormulario();
         }
 
         //ELIMINAR DATOS DE LA TABLA
@@ -159,7 +156,7 @@
         } 
 
 
-        function limpiarFormulario() {
+        window.limpiarFormulario=function() {
         // Limpia los campos del formulario después de la actualización
         document.getElementById('nombre').value = '';
         document.getElementById('apellido').value = '';
