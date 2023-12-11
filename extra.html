@@ -67,26 +67,62 @@
         const app = initializeApp(firebaseConfig);
         const database= getDatabase(app);
 
-        window.crearRegistro=function(){
-            const nombre = document.getElementById('nombre').value;
-            const apellido = document.getElementById('apellido').value;
-            const edad= document.getElementById('edad').value;
-            const CI = document.getElementById('cedula').value;
+        window.editarRegistro = function (key, name, lastname, age, CI) {
+            // Función para editar un registro
+            const nombreInput = document.getElementById('nombre');
+            const apellidoInput = document.getElementById('apellido');
+            const edadInput = document.getElementById('edad');
+            const cedulaInput = document.getElementById('cedula');
 
-            console.log(nombre,edad);
+            nombreInput.value = name;
+            apellidoInput.value = lastname;
+            edadInput.value = age;
+            cedulaInput.value = CI;
 
+            const botonCrear = document.querySelector('button[type="button"]');
+            botonCrear.innerText = 'Actualizar';
+            botonCrear.onclick = function () {
+                actualizarRegistro(key);
+            };
+        }
 
+        function actualizarRegistro(key) {
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+        const edad = document.getElementById('edad').value;
+        const CI = document.getElementById('cedula').value;
 
-            push(
-                ref(database, 'Carlos Colcha'),
-                {
-                    name: nombre,
-                    lastname: apellido,
-                    age: edad,
-                    CI: CI,
+        // Actualizar los datos en Firebase usando la clave (key) proporcionada
+        // Implementa esta lógica según la estructura de tu base de datos
+        // Por ejemplo:
+        const registroRef = ref(database, 'CarlosColcha/' + key); // Asegúrate de que 'CarlosColcha' sea la ruta correcta en tu base de datos
+        update(registroRef, {
+            name: nombre,
+            lastname: apellido,
+            age: edad,
+            CI: CI,
+        });
 
-                }
-            );   
+        // Limpiar el formulario y cambiar el botón a "Crear" después de la actualización
+        limpiarFormulario();
+        }
+
+        function limpiarFormulario() {
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const edadInput = document.getElementById('edad');
+        const cedulaInput = document.getElementById('cedula');
+
+        nombreInput.value = '';
+        apellidoInput.value = '';
+        edadInput.value = '';
+        cedulaInput.value = '';
+
+        const botonCrear = document.querySelector('button[type="button"]');
+        botonCrear.innerText = 'Crear';
+        botonCrear.onclick = function () {
+            crearRegistro();
+        };
         }
 
         window.mostrarDatosEnTabla=function() {
