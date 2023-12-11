@@ -87,7 +87,11 @@
                     CI: CI,
 
                 }
-            );   
+            ); 
+            document.getElementById('nombre').value = '';
+            document.getElementById('apellido').value = '';
+            document.getElementById('edad').value = '';
+            document.getElementById('cedula').value = '';
         }
 
         //ELIMINAR DATOS DE LA TABLA
@@ -162,12 +166,7 @@
         document.getElementById('edad').value = '';
         document.getElementById('cedula').value = '';
 
-        // Cambiar el botón de "Actualizar" a "Crear" después de la actualización
-        const botonCrear = document.querySelector('button[type="button"]');
-        botonCrear.innerText = 'Crear';
-        botonCrear.onclick = function () {
-            crearRegistro();
-        };
+        
         }
         
 
