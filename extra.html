@@ -89,6 +89,11 @@
             );   
         }
 
+        window.borrarRegistro=function(key){
+            const usuarioRef = ref(database, `carlosColcha/${key}`);
+            remove(usuarioRef);
+        }
+
         window.mostrarDatosEnTabla=function() {
             const tablaBody = document.querySelector("tbody");
 
@@ -106,7 +111,7 @@
                         <td>${CI}</td>
                         <td> 
                             <button type="button" class="btn btn-outline-info" onclick="">Editar</button>   
-                            <button type="button" class="btn btn-outline-danger" onclick="">Eliminar</button>  
+                            <button type="button" class="btn btn-outline-danger" onclick="borrarRegistro('${childSnapshot.key}');">Eliminar</button>  
                         </td>
                     `;
 
