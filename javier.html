@@ -158,7 +158,7 @@
         const total = document.getElementById("total").value;
 
         // Verificar si ya existe un registro para el producto
-        const productoRef = ref(database, 'Javier Tuso');
+        const productoRef = ref(database, 'Javier_Tuso');
         let productoExistenteKey = null;
 
         onValue(productoRef, (snapshot) => {
@@ -173,7 +173,7 @@
           // Si hay un producto existente, actualizamos sus datos; de lo contrario, creamos uno nuevo
           if (productoExistenteKey !== null) {
             // Actualizar el registro existente
-            update(ref(database, `Javier Tuso/${productoExistenteKey}`), {
+            update(ref(database, `Javier_Tuso/${productoExistenteKey}`), {
               name: nombre,
               precio: precio,
               cantidad: cantidad,
@@ -181,7 +181,7 @@
             });
           } else {
             // Crear un nuevo registro
-            push(ref(database, 'Javier Tuso'), {
+            push(ref(database, 'Javier_Tuso'), {
               name: nombre,
               precio: precio,
               cantidad: cantidad,
@@ -208,7 +208,7 @@
         const total = document.getElementById("total").value;
 
         // Verificar si ya existe un registro para el producto
-        const productoRef = ref(database, 'Javier Tuso');
+        const productoRef = ref(database, 'Javier_Tuso');
         let productoExistenteKey = null;
 
         onValue(productoRef, (snapshot) => {
@@ -223,7 +223,7 @@
           // Si hay un producto existente, actualizamos sus datos; de lo contrario, creamos uno nuevo
           if (productoExistenteKey !== null) {
             // Actualizar el registro existente
-            update(ref(database, `Javier Tuso/${productoExistenteKey}`), {
+            update(ref(database, `Javier_Tuso/${productoExistenteKey}`), {
               name: nombre,
               precio: precio,
               cantidad: cantidad,
@@ -231,7 +231,7 @@
             });
           } else {
             // Crear un nuevo registro
-            push(ref(database, 'Javier Tuso'), {
+            push(ref(database, 'Javier_Tuso'), {
               name: nombre,
               precio: precio,
               cantidad: cantidad,
@@ -252,7 +252,7 @@
 
       // Función para editar un registro
       window.editarRegistro = function(key, nombre, precio, cantidad, total) {
-        const productoRef = ref(database, `Javier Tuso/${key}`);
+        const productoRef = ref(database, `Javier_Tuso/${key}`);
 
         // Llenar el formulario con los datos actuales
         document.getElementById('nombre').value = nombre;
@@ -273,7 +273,7 @@
           const nuevoTotal = document.getElementById('total').value;
 
           // Actualizar los datos en la base de datos
-          update(ref(database, `Javier Tuso/${key}`), {
+          update(ref(database, `Javier_Tuso/${key}`), {
             name: nuevoNombre,
             precio: nuevoPrecio,
             cantidad: nuevaCantidad,
@@ -338,7 +338,7 @@
     });
   }
   window.eliminarRegistro = function (key) {
-    remove(ref(database, `Javier Tuso/${key}`));
+    remove(ref(database, `Javier_Tuso/${key}`));
   };
   // Llama a la función para mostrar datos al cargar la página
   mostrarDatosEnTabla();
