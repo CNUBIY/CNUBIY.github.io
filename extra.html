@@ -89,7 +89,7 @@
             );   
         }
 
-        function mostrarDatosEnTabla() {
+        window.mostrarDatosEnTabla=function() {
             const tablaBody = document.querySelector("tbody");
 
             onValue(ref(database, 'carlosColcha'), (snapshot) => {
@@ -144,7 +144,7 @@
                     // Acción para eliminar (puedes implementar esta lógica si es necesario)
                 }
             }
-        });
+    });
 
         document.addEventListener('DOMContentLoaded', mostrarDatosEnTabla);
       </script>
