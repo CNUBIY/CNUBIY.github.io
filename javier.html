@@ -98,7 +98,6 @@
                 </div>
           </div>
         </div>
-        <div id="mensajeExito" style="color: green;"></div>
         </form>
         <script type="module">
           // Importar funciones específicas de Firebase
@@ -199,13 +198,6 @@
           mostrarDatosEnTabla();
         });
       };
-          function mostrarMensajeExito() {
-            const mensajeExito = document.getElementById('mensajeExito');
-            mensajeExito.innerText = 'Producto editado exitosamente';
-            setTimeout(() => {
-              mensajeExito.innerText = '';
-            }, 3000);  // Después de 3 segundos, limpia el mensaje
-          }
 
       // Función para editar un registro
       window.editarRegistro = function(key, nombre, precio, cantidad, total) {
