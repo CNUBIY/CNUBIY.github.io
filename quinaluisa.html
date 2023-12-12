@@ -77,7 +77,7 @@
             };
 
             push(
-                ref(database, 'Quinaluisa'),
+                ref(database, 'registros'),
                 newData
             );
 
@@ -93,15 +93,15 @@
                 fechaMatricula: document.getElementById("fechaMatricula").value
             };
 
-            update(ref(database, 'Quinaluisa/' + key), updatedData);
+            update(ref(database, 'registros/' + key), updatedData);
         }
 
         window.EliminarRegistro = function (key) {
-            remove(ref(database, 'Quinaluisa/' + key));
+            remove(ref(database, 'registros/' + key));
         }
 
         // Update the table when data changes
-        onValue(ref(database, 'Quinaluisa'), (snapshot) => {
+        onValue(ref(database, 'registros'), (snapshot) => {
             const data = snapshot.val();
             const records = data ? Object.entries(data) : [];
 
