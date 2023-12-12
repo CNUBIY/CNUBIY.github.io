@@ -147,11 +147,11 @@
     </div>
 
     <script type="module">
-        // Import the functions you need from the SDKs you need
+     
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
         import { getDatabase, ref, push, onValue, remove, set } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-database.js";
 
-        // Your web app's Firebase configuration
+       
         const firebaseConfig = {
             apiKey: "AIzaSyBMJsVpnbOwVOiVNbTZScZdet9qlGigDL0",
             authDomain: "conexion-8ec0d.firebaseapp.com",
@@ -162,7 +162,7 @@
             appId: "1:679910299749:web:9800b464879628b4850e8c"
         };
 
-        // Initialize Firebase
+        // Inicia el firebase
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
 
@@ -185,7 +185,7 @@
                 equipoFavorito: equipoFavorito,
             });
 
-            // Limpiar los campos después de crear el registro
+            
             document.getElementById('nombre').value = '';
             document.getElementById('edad').value = '';
             document.getElementById('deporteFavorito').value = '';
@@ -193,26 +193,26 @@
             document.getElementById('equipoFavorito').value = '';
         }
 
-        // Función para eliminar un deportista
+        // Función para eliminar
         window.eliminarDeportista = function (key) {
             const deportistaRef = ref(database, `gutierrez rivaldo/${key}`);
             remove(deportistaRef);
         }
 
-        // Función para editar un deportista
+     
         window.editarDeportista = function (key) {
             const deportistaRef = ref(database, `gutierrez rivaldo/${key}`);
-            // Obtener los datos del deportista actual
+            // Obtener los datos actuales
             onValue(deportistaRef, (snapshot) => {
                 const deportista = snapshot.val();
-                // Llenar el formulario con los datos actuales
+             
                 document.getElementById('nombre').value = deportista.name;
                 document.getElementById('edad').value = deportista.age;
                 document.getElementById('deporteFavorito').value = deportista.deporteFavorito;
                 document.getElementById('segundoDeporteFavorito').value = deportista.segundoDeporteFavorito;
                 document.getElementById('equipoFavorito').value = deportista.equipoFavorito;
 
-                // Cambiar el botón de "Crear" a "Guardar" y actualizar la función
+             
                 const crearButton = document.getElementById('crearButton');
                 crearButton.innerHTML = 'Crear';
                 crearButton.removeAttribute('data-key');
@@ -222,7 +222,7 @@
             });
         }
 
-        // Función para mostrar la lista de deportistas
+        
         onValue(ref(database, 'gutierrez rivaldo'), (snapshot) => {
             const listaDeportistas = document.getElementById('listaDeportistas');
             listaDeportistas.innerHTML = '';
